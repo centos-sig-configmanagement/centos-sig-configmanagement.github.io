@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Github project settings &#8212; CentOS Config Management SIG 2016 documentation</title>
+    
+    <link rel="stylesheet" href="_static/centos.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2016',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="CentOS Config Management SIG 2016 documentation" href="index.html" />
+    <link rel="next" title="Testing spec files" href="testing.html" />
+    <link rel="prev" title="How to contribute" href="contributing.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="testing.html" title="Testing spec files"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="contributing.html" title="How to contribute"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CentOS Config Management SIG 2016 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="github-project-settings">
+<span id="github-project-settings"></span><h1>Github project settings<a class="headerlink" href="#github-project-settings" title="Permalink to this headline">¶</a></h1>
+<p>This page describes the configuration needed to setup the communication between
+<a class="reference external" href="https://ci.centos.org">ci.centos.org</a> and github.</p>
+<div class="section" id="webhooks">
+<span id="webhooks"></span><h2>WebHooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h2>
+<p>For more details, see the <a class="reference external" href="https://wiki.centos.org/QaWiki/CI/GithubIntegration">CentOS wiki</a>.</p>
+<ol>
+<li><p class="first">Open the project settings</p>
+<p><img alt="Settings button" src="_images/github-settings.png" /></p>
+</li>
+<li><p class="first">Select Webhooks</p>
+<p><img alt="Webhook menu button" src="_images/github-webhooks.png" /></p>
+</li>
+<li><p class="first">Click &#8220;Add a webhook&#8221; button</p>
+<p><img alt="Webhook add button" src="_images/github-webhooks-add.png" /></p>
+</li>
+<li><p class="first">Create a push webhook to the url <code class="docutils literal"><span class="pre">https://ci.centos.org/github-webhook/</span></code></p>
+<p><img alt="Webhook for the Github plugin" src="_images/github-webhooks-gh.png" /></p>
+</li>
+<li><p class="first">Click &#8220;Add a webhook&#8221; button</p>
+<p><img alt="Webhook add button" src="_images/github-webhooks-add.png" /></p>
+</li>
+<li><p class="first">Create a push webhook to the url <code class="docutils literal"><span class="pre">https://ci.centos.org/ghprbhook/</span></code></p>
+<ul class="simple">
+<li>select &#8216;Let me select individual events&#8217;</li>
+<li>unselect &#8216;Push&#8217; and select &#8216;Pull Request&#8217; and &#8216;Issue Comment&#8217;</li>
+</ul>
+<p><img alt="Webhook for the Github Pull Request Builder plugin" src="_images/github-webhooks-ghprb.png" /></p>
+</li>
+<li><p class="first">Check that the webhooks are correctly configured (green)</p>
+<p><img alt="Webhook status" src="_images/github-webhooks-ok.png" /></p>
+</li>
+</ol>
+</div>
+<div class="section" id="protected-branches">
+<span id="protected-branches"></span><h2>Protected branches<a class="headerlink" href="#protected-branches" title="Permalink to this headline">¶</a></h2>
+<p>When we have a stable repo, we can enforce ci testing by using the following
+steps:</p>
+<ol>
+<li><p class="first">Open the project settings</p>
+<p><img alt="Settings button" src="_images/github-settings.png" /></p>
+</li>
+<li><p class="first">Select Webhooks</p>
+<p><img alt="Webhook menu button" src="_images/github-branch-menu.png" /></p>
+</li>
+<li><p class="first">Select the branch you want to protect</p>
+<p><img alt="Webhook menu button" src="_images/github-protected-branch-select.png" /></p>
+</li>
+<li><p class="first">Select &#8220;Protect this Branch&#8221;, &#8220;Require status checks to pass before merging&#8221;,
+<em>unselect</em> &#8220;Require branches to be up to date before merging&#8221;, and select
+&#8220;ci.centos.org&#8221;. If you do not see &#8220;ci.centos.org&#8221;, it means that there has not
+yet been any pull requests tests on the repo.</p>
+<p><img alt="Webhook menu button" src="_images/github-protected-branch.png" /></p>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Github project settings</a><ul>
+<li><a class="reference internal" href="#webhooks">WebHooks</a></li>
+<li><a class="reference internal" href="#protected-branches">Protected branches</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="contributing.html"
+                        title="previous chapter">How to contribute</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="testing.html"
+                        title="next chapter">Testing spec files</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/githubrepo.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="testing.html" title="Testing spec files"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="contributing.html" title="How to contribute"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">CentOS Config Management SIG 2016 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; <a href="copyright.html">Copyright</a> 2016, Julien Pivotto, The CentOS Project, and others.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.8.
+    </div>
+  </body>
+</html>
